@@ -1,0 +1,6 @@
+{
+    "tools_folder": "tools",
+    "lessons_folder": "lessons",
+    "default_stop_token": "<|im_end|>",
+    "gen_method": "openai"
+}

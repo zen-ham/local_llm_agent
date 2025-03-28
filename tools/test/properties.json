@@ -1,0 +1,24 @@
+{
+    "is_tool": true,
+    "priority": 1.0,
+    "starting_token": "[TEST]",
+    "ending_token": "[TEST end]",
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "Please simply run the test tool so that I may verify that you are able to use the tools."
+        },
+        {
+            "role": "assistant",
+            "content": "Alright, I will run the test tool:\n[TEST]arbitrary input text, abc 123[TEST end]"
+        },
+        {
+            "role": "system",
+            "content": "arbitrary input text, abc 123"
+        },
+        {
+            "role": "assistant",
+            "content": "I have run the test tool."
+        }
+    ]
+}

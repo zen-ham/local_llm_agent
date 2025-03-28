@@ -1,0 +1,24 @@
+{
+    "is_tool": true,
+    "priority": 0.0,
+    "starting_token": "[PY]",
+    "ending_token": "[PY end]",
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "Please run a python script to give me 10 random numbers between 0 and 10."
+        },
+        {
+            "role": "assistant",
+            "content": "Sure, I'll run a concise Python script to generate 10 random numbers for you:\n[PY]import random\n\nrandom_numbers = [random.randint(0, 10) for _ in range(10)]\noutput = ', '.join(map(str, random_numbers))\n\nprint(output)[PY end]"
+        },
+        {
+            "role": "system",
+            "content": "6, 2, 5, 3, 9, 1, 4, 8, 7, 0"
+        },
+        {
+            "role": "assistant",
+            "content": "Let me know if there's anything else I can do for you!"
+        }
+    ]
+}

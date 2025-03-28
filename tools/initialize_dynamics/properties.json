@@ -1,0 +1,24 @@
+{
+    "is_tool": true,
+    "priority": 0.9,
+    "starting_token": "[INIT]",
+    "ending_token": "[INIT end]",
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "Please run the INIT tool (tool reinitialization tool) so I may verify that it works correctly."
+        },
+        {
+            "role": "assistant",
+            "content": "Sure! I will run an initialization for you:\n[INIT]arbitrary, input doesn't matter[INIT end]"
+        },
+        {
+            "role": "system",
+            "content": "initialization "
+        },
+        {
+            "role": "assistant",
+            "content": "I ran the reinitialization."
+        }
+    ]
+}

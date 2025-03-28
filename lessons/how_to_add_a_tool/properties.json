@@ -1,0 +1,110 @@
+{
+    "is_tool": false,
+    "priority": 0,
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "Using your current tools, please add a cmd (command prompt) tool to yourself, similar to the powershell tool. You will find your current tools in the 'tools' folder in the current directory, and you can look at existing tools as a template of what to make, for example the test tool. You will also need to reinitialize after creating the tool. (Side note, keep in mind that from your perspective, after you create a tool it will appear to you as if it always existed even before you created it. I know, it's a bit weird.)"
+        },
+        {
+            "role": "assistant",
+            "content": "Sure! I will create a new tool for myself. First I will head to the tools folder:\n[PS]cd \"tools\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "Now I will list all the files and folders to look for the test tool in order to understand it and use it as a template:\n[PS]ls | ForEach-Object { $_.Name }[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "initialize_dynamics\npowershell\npython\ntest"
+        },
+        {
+            "role": "assistant",
+            "content": "The test tool appears to have its own folder, so I will look inside:\n[PS]ls \"test\" | ForEach-Object { $_.Name }[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "__pycache__\nmethod.py\nproperties.json"
+        },
+        {
+            "role": "assistant",
+            "content": "It looks like a python module and a json file is what constitutes a tool. Now I will take a look to see how these files are structured, first I'll look at the properties file:\n[PS]gc \"test\\properties.json\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "{\n    \"is_tool\": true,\n    \"starting_token\": \"[TEST]\",\n    \"ending_token\": \"[TEST end]\",\n    \"prompt_data\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Please simply run the test tool so that I may verify that you are able to use the tools.\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"Alright, I will run the test tool:\\n[TEST]arbitrary input text, abc 123[TEST end]\"\n        },\n        {\n            \"role\": \"system\",\n            \"content\": \"arbitrary input text, abc 123\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"I have run the test tool.\"\n        }\n    ]\n}"
+        },
+        {
+            "role": "assistant",
+            "content": "Alright, I understand. This file contains the basic specifications for the tool, and some instructions used to alert me to the tool's existence, and to succinctly relay to me how the tool functions. I will now look at the python file:\n[PS]gc \"test\\method.py\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "import subprocess\n\n\ndef method(command):\n    return command"
+        },
+        {
+            "role": "assistant",
+            "content": "This makes sense, it seems that the test tool simply returns whatever is given to it. I'll now have a look at the powershell tool's \"method\" function, as it is analogous to the cmd tool I will make, and will therefore be a good example:\n[PS]gc \"powershell\\method.py\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "import subprocess\n\n\ndef method(command):\n    result = subprocess.run([\"powershell\", \"-Command\", command], capture_output=True, text=True)\n    return result.stdout+'\\n'+result.stderr"
+        },
+        {
+            "role": "assistant",
+            "content": "Alright, this is pretty straight forward, so I'll cut to the chase and start creating this new tool. First I'll simply clone the test tool to avoid having to create each file:\n[PS]cp -Path \"test\" -Destination \"cmd\" -Recurse[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "Now I'll overwrite the python module with updated code to suit the new purpose of the tool:[PS]sc \"cmd\\method.py\" \"import subprocess\n\n\ndef method(command):\n    result = subprocess.run(['cmd', '/C', command], capture_output=True, text=True)\n    return result.stdout+'\\n'+result.stderr\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "Now I'll overwrite the properties file to match:[PS]sc \"cmd\\properties.json\" \"{\n    \"is_tool\": true,\n    \"priority\": 0.0,\n    \"starting_token\": \"[CMD]\",\n    \"ending_token\": \"[CMD end]\",\n    \"prompt_data\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Please use the CMD tool to get the current date.\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"Sure! I'll use the CMD tool and get the current date:\\n[CMD]echo %DATE%[CMD end]\"\n        },\n        {\n            \"role\": \"system\",\n            \"content\": \"Mon 22/01/2024\"\n        },\n        {\n            \"role\": \"assistant\",\n            \"content\": \"There's the current date. Let me know if I can help with anything else.\"\n        }\n    ]\n}\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "Alright, now that everything is in order, I'll reinitialize:\n[INIT]arbitrary input[INIT end]"
+        },
+        {
+            "role": "system",
+            "content": "initializing\nImporting tools\\cmd\\method.py\nImporting tools\\initialize_dynamics\\method.py\nImporting tools\\powershell\\method.py\nImporting tools\\python\\method.py\nImporting tools\\test\\method.py\nImporting lessons\\how_to_add_a_tool\\properties.json\nImporting lessons\\tools_are_not_always_needed\\properties.json\nInitialized successfully"
+        },
+        {
+            "role": "assistant",
+            "content": "Now that the reinitialization is complete, I'll test the new tool to make sure it's working correctly:\n[CMD]ls[CMD end]"
+        },
+        {
+            "role": "system",
+            "content": "__pycache__  base_properties.json  lessons  main.py  tools\n"
+        },
+        {
+            "role": "assistant",
+            "content": "I have created the CMD tool and it is working as expected. I will now cd back up into my root directory:[PS]cd ..[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "I hope this new tool comes in useful to us! Let me know if there's anything else I can do for you."
+        }
+    ]
+}

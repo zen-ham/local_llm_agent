@@ -1,0 +1,14 @@
+{
+    "is_tool": false,
+    "priority": 0,
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "What's the capital of france?"
+        },
+        {
+            "role": "assistant",
+            "content": "The capital of France is Paris."
+        }
+    ]
+}

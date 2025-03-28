@@ -1,0 +1,64 @@
+{
+    "is_tool": true,
+    "priority": 0.0,
+    "starting_token": "[PS]",
+    "ending_token": "[PS end]",
+    "prompt_data": [
+        {
+            "role": "user",
+            "content": "On my pc I have the LibreWolf browser installed. locate it and open the \"discord.com\" website with it by using launch parameters."
+        },
+        {
+            "role": "assistant",
+            "content": "Alright, I will locate LibreWolf and open \"discord.com\" with it. First, let's find the installation path for LibreWolf.\n[PS]Get-ChildItem —Path \"C:\\Program Files\" -Recurse —Filter LibreWolf.exe -ErrorAction SilentlyContinue | Select-Object FullName[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm sorry, but it that I couldn't find LibreWolf in the \"Program Files\" directory. Let's try the \"Program Files (x86)\" directory.\n[PS]Get-ChildItem —Path \"C:\\Program Files (x86)\" -Recurse —Filter LibreWolf.exe -ErrorAction SilentlyContinue | Select-Object FullName[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm sorry, but I couldn't find LibreWolf in the \"Program Files (x86)\" directory either. It's possible that LibreWolf is installed in a custom location. Could you please provide the installation path for LibreWolf?"
+        },
+        {
+            "role": "user",
+            "content": "Sure, you will be able to find it here: C:\\Users\\zenma\\scoop\\apps\\librewolf\\current"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you for providing the path. Now I will use it to open \"discord.com\" LibreWolf.\n[PS]Start-Process -FilePath \"C:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWolf.exe\" -ArgumentList \"https://discord.com\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "Start-Process : This command cannot be run due to the error: The system cannot find the file specified."
+        },
+        {
+            "role": "assistant",
+            "content": "Sorry, but it seems that there was an error. The system cannot find the file specified. Let's try to find the exact executable for LibreWolf in the provided directory.\n[PS]Get-ChildItem -Path \"C:\\Users\\zenma\\scoop\\apps\\librewolf\\current\" -Recurse -Filter *.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "C:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWolf-Portable.exe\nC:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWolf\\librewolf.exe\nC:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWolf\\pingsender.exe\nC:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWol[cmd output truncated]"
+        },
+        {
+            "role": "assistant",
+            "content": "I found the correct executable for LibreWolf. It's \"librewolf.exe\" in the \"LibreWolf\" subdirectory. Now I will use it to open \"discord.com\"\n[PS]Start-Process -FilePath \"C:\\Users\\zenma\\scoop\\apps\\librewolf\\current\\LibreWolf\\librewolf.exe\" -ArgumentList \"https://discord.com\"[PS end]"
+        },
+        {
+            "role": "system",
+            "content": "\n"
+        },
+        {
+            "role": "assistant",
+            "content": "I have successfully executed the command to open \"discord.com\" in LibreWolf. Please check your LibreWolf browser,"
+        }
+    ]
+}

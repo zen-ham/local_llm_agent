@@ -1,7 +1,7 @@
 An LLM agent implementation in python.
 =
 
----
+Open Source Week day 4 release!
 
 capabilities:
 -

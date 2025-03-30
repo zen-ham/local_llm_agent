@@ -1,7 +1,7 @@
 An LLM agent implementation in python.
 =
 
-[![ ](https://img.shields.io/badge/Open_Source_Week-white?logo=opensourceinitiative)](https://github.com/zen-ham#open-source-week) day 4 release!
+[![ ](https://img.shields.io/badge/Open_Source_Week-white?logo=opensourceinitiative)](https://github.com/zen-ham#-) day 4 release!
 
 capabilities:
 -
